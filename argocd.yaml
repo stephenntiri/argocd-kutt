@@ -1,15 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-kutt
+  name: argo-kutt
   namespace: kutt
 spec:
-  project: argocd-kutt
+  project: default
 
   source:
     repoURL: 'https://github.com/stephenntiri/argocd-kutt.git'
     targetRevision: HEAD
-    path: kutt
+    path: argodc/kutt
   destination: 
     server: 'https://kubernetes.default.svc'
     namespace: kutt
