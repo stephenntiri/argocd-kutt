@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: kutt-sts
+  name: kutt-sts
+  namespace: kutt
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kutt-sts
+  serviceName: kutt-headless-service
+  template:
+    metadata:
+      labels:
+        app: kutt-sts
+    spec:
+      containers:
+        -
+          image: "redis:6.0-alpine"
+          name: redis
+          ports:
+            -
+              containerPort: 6379
+              name: kutt-port
+        -
+          envFrom:
+            -
+              secretRef:
+                name: kutt-secret
+            -
+              configMapRef:
+                name: kutt-config
+          image: "postgres:12-alpine"
+          name: postgres
+          ports:
+            -
+              containerPort: 5432
+              name: kutt-port
+          volumeMounts:
+            -
+              mountPath: /var/lib/postgresql/data
+              name: postgres-data
+            -
+              mountPath: /data
+              name: redis-data
+            -
+              mountPath: secret
+              name: kutt-secret
+            -
+              mountPath: config
+              name: kutt-config
+  volumeClaimTemplates:
+    -
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        name: kutt-pvc
+        app: kutt-sts
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: "3"
+        storageClassName: local-storage
+        local:
+          path: '/k8s-pv'
