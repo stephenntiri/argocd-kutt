@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kutt-config
+  namespace: kutt
+data:
+  DB_HOST: "postgres"
+  DB_NAME: "kutt"
+  REDIS_HOST: "redis"
+  POSTGRES_DB: "kutt"
