@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-kutt
+  namespace: kutt
+spec:
+  project: argocd-kutt
+
+  source:
+    repoURL: 'https://github.com/stephenntiri/argocd-kutt.git'
+    targetRevision: HEAD
+    path: kutt
+  destination: 
+    server: 'https://kubernetes.default.svc'
+    namespace: kutt
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
