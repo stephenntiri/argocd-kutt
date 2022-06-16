@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: 'https://github.com/stephenntiri/argocd-kutt.git'
     targetRevision: HEAD
-    path: argodc/kutt
+    path: argocd-kutt/kutt
   destination: 
     server: 'https://kubernetes.default.svc'
     namespace: kutt
