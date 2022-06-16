@@ -51,6 +51,18 @@ spec:
             -
               mountPath: config
               name: kutt-config
+      volumes:
+      - name: kutt-config
+        configMap:
+          name: kutt-config
+      volumes:
+      - name: redis-data
+        persistentVolumeClaim:
+          claimName: kutt-pvc
+      volumes:
+      - name: postgres-data
+        persistentVolumeClaim:
+          claimName: kutt-pvc        
   volumeClaimTemplates:
     -
       apiVersion: v1
