@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: 'https://github.com/stephenntiri/argocd-kutt.git'
     targetRevision: HEAD
-    path: argocd-kutt/loki
+    path: argocd-kutt/loki-stack
   destination: 
     server: 'https://kubernetes.default.svc'
     namespace: monitoring
