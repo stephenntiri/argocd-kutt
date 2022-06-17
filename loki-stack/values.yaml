@@ -8,7 +8,7 @@ fluent-bit:
   enabled: false
 
 grafana:
-  enabled: true
+  enabled: false
   sidecar:
     datasources:
       enabled: true
@@ -16,10 +16,10 @@ grafana:
     tag: 6.7.0
 
 prometheus:
-  enabled: true
+  enabled: false
 
 filebeat:
-  enabled: true
+  enabled: false
   filebeatConfig:
     filebeat.yml: |
       # logging.level: debug
