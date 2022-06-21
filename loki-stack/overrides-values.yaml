@@ -1,0 +1,17 @@
+grafana:
+  enabled: true
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+      - grafana.kubernetes.internal
+prometheus:
+  enabled: true
+  isDefault: false
+  server:
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      hosts:
+        - prometheus.kubernetes.internal
+
