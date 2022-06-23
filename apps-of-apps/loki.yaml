@@ -10,8 +10,11 @@ spec:
     repoURL: 'https://github.com/stephenntiri/argocd-kutt.git'
     targetRevision: HEAD
     path: argocd-kutt/loki-stack
-  destination: 
-    server: 'https://kubernetes.default.svc'
+    helm:
+      valueFiles:
+        - dev-values.yaml
+  destination:
+    server: https://kubernetes.default.svc
     namespace: monitoring
   syncPolicy:
     automated:
