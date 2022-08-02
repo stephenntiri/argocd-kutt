@@ -14,3 +14,13 @@ prometheus:
       ingressClassName: nginx
       hosts:
         - prometheus.kubeserver.internal
+        
+loki:
+  enabled: true
+  isDefault: false
+  server:
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      hosts:
+        - loki.kubeserver.internal
